@@ -34,3 +34,30 @@ export const roads = [
   { name: 'Corredor Leste', status: 'IN_TRANSIT' },
   { name: 'Acesso Doca Central', status: 'AVAILABLE' },
 ];
+
+export const busLines = [
+  {
+    id: 'L-01',
+    name: 'Linha Norte (Circular)',
+    color: '#3B82F6',
+    schedules: ['06:00', '08:30', '11:45', '14:00', '17:30', '20:00'],
+    nextAt: '08:30',
+    status: 'ON_TIME',
+  },
+  {
+    id: 'L-02',
+    name: 'Linha Sul (Terminal)',
+    color: '#10B981',
+    schedules: ['07:15', '09:45', '13:00', '16:15', '19:30', '22:00'],
+    nextAt: '09:45',
+    status: 'DELAYED',
+  },
+  {
+    id: 'L-03',
+    name: 'Expresso Doca',
+    color: '#F59E0B',
+    schedules: ['06:30', '07:30', '08:30', '16:00', '17:00', '18:00'],
+    nextAt: '16:00',
+    status: 'ON_TIME',
+  },
+];

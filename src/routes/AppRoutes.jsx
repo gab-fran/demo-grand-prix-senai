@@ -11,7 +11,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route
-        path="/solicitante"
+        path="/solicitante/*"
         element={
           <ProtectedRoute allowedRoles={[ROLES.REQUESTER]}>
             <SolicitantePage />
