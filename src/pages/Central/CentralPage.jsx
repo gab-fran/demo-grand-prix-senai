@@ -8,7 +8,9 @@ import NotificationPanel from '../../components/ui/NotificationPanel';
 import DataTable from '../../components/tables/DataTable';
 import FilterBar from '../../components/ui/FilterBar';
 import SearchBar from '../../components/ui/SearchBar';
-import { alerts, kpis, requests, roads, vehicles } from '../../data/mockData';
+import { alerts, kpis, requests, roads as initialRoads, vehicles } from '../../data/mockData';
+import BlockRoadModal from '../../components/modals/BlockRoadModal';
+import PrimaryButton from '../../components/ui/PrimaryButton';
 
 const menuItems = [
   { to: '/central', label: 'Torre de Controle' },
@@ -29,6 +31,23 @@ const tableRows = [
 export default function CentralPage() {
   const [search, setSearch] = useState('');
   const [filters, setFilters] = useState({ status: 'ALL', type: 'ALL', shift: 'ALL' });
+  const [roads, setRoads] = useState(initialRoads);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleBlockRoad = (blockData) => {
+    setRoads((prev) =>
+      prev.map((road) =>
+        road.name === blockData.roadName
+          ? {
+              ...road,
+              status: blockData.isScheduled ? 'SCHEDULED' : 'BLOCKED',
+              reason: blockData.reason,
+              until: blockData.endTime ? new Date(blockData.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Indefinido',
+            }
+          : road
+      )
+    );
+  };
 
   const filterOptions = [
     {
@@ -100,15 +119,39 @@ export default function CentralPage() {
           ))}
         </div>
         <div className="space-y-3">
-          <h3 className="font-semibold">Vias e bloqueios</h3>
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold">Vias e bloqueios</h3>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="rounded-lg bg-primary/10 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/20"
+            >
+              + Bloquear Via
+            </button>
+          </div>
           {roads.map((road) => (
-            <article key={road.name} className="rounded-xl2 border border-line bg-surface p-4">
-              <p className="font-medium">{road.name}</p>
-              <p className="text-sm text-muted">Status: {road.status}</p>
+            <article key={road.name} className="relative overflow-hidden rounded-xl2 border border-line bg-surface p-4">
+              <div className="flex justify-between">
+                <p className="font-medium">{road.name}</p>
+                <div className={`h-2 w-2 rounded-full ${road.status === 'BLOCKED' ? 'bg-danger shadow-[0_0_8px_rgba(239,68,68,0.5)]' : road.status === 'SCHEDULED' ? 'bg-warning' : 'bg-success'}`} />
+              </div>
+              <p className="text-sm text-muted">Status: {road.status === 'BLOCKED' ? 'Bloqueada' : road.status === 'SCHEDULED' ? 'Agendada' : 'Livre'}</p>
+              {road.reason && (
+                <div className="mt-2 space-y-1">
+                  <p className="text-xs text-muted">Motivo: <span className="text-appText">{road.reason}</span></p>
+                  <p className="text-xs text-muted">Previsão: <span className="text-appText">{road.until}</span></p>
+                </div>
+              )}
             </article>
           ))}
         </div>
       </section>
+
+      <BlockRoadModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        roads={roads.filter(r => r.status !== 'BLOCKED')}
+        onBlock={handleBlockRoad}
+      />
 
       <DataTable columns={tableColumns} rows={tableRows} />
     </AppLayout>

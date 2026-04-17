@@ -30,9 +30,9 @@ export const alerts = [
 export const frequentDestinations = ['Doca 3', 'Pátio 7', 'Terminal Interno', 'Administração', 'Portão Sul'];
 
 export const roads = [
-  { name: 'Via Norte', status: 'BLOCKED' },
-  { name: 'Corredor Leste', status: 'IN_TRANSIT' },
-  { name: 'Acesso Doca Central', status: 'AVAILABLE' },
+  { name: 'Via Norte', status: 'BLOCKED', reason: 'Manutenção Preventiva', until: '18:30' },
+  { name: 'Corredor Leste', status: 'IN_TRANSIT', reason: '', until: '' },
+  { name: 'Acesso Doca Central', status: 'AVAILABLE', reason: '', until: '' },
 ];
 
 export const busLines = [

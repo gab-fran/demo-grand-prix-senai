@@ -13,7 +13,8 @@ const menuItems = [
 export default function MotoristaPage() {
   return (
     <AppLayout menuItems={menuItems}>
-      <section className="grid gap-4 lg:grid-cols-[1.4fr_1fr]">
+      <section className="grid gap-4 xl:grid-cols-[2fr_1fr]">
+        <MapPanel title="Rota e Bloqueios" />
         <article className="space-y-4 rounded-xl2 border border-line bg-surface p-4">
           <h3 className="font-semibold">Missão atual #REQ-8892</h3>
           <p className="text-sm text-zinc-300">Origem: Doca 3</p>
@@ -28,14 +29,8 @@ export default function MotoristaPage() {
             <SecondaryButton>Disponível</SecondaryButton>
           </div>
         </article>
-        <article className="rounded-xl2 border border-line bg-surface p-4">
-          <h3 className="font-semibold">Status do veículo</h3>
-          <p className="mt-2 text-sm text-zinc-300">Combustível: 72%</p>
-          <p className="text-sm text-zinc-300">Checklist: OK</p>
-          <p className="text-sm text-zinc-300">Próxima manutenção: 12h</p>
-        </article>
       </section>
-      <MapPanel title="Rota e Bloqueios" />
+
       <section className="grid gap-4 md:grid-cols-2">
         {alerts.map((alert) => (
           <AlertCard key={alert.id} alert={alert} />
