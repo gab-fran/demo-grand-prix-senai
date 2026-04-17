@@ -4,17 +4,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        app: '#121212',
-        surface: '#1E1E1E',
+        app: '#0B0F10',
+        surface: '#151C1E',
         primary: '#007E7A',
-        accent: '#F7B52D',
-        appText: '#FFFFFF',
+        accent: '#EDB111',
+        vale: {
+          green: '#007E7A',
+          gold: '#EDB111',
+          gray: {
+            dark: '#555555',
+            mid: '#747678',
+          }
+        },
+        appText: '#E5E7EB',
         muted: '#9CA3AF',
-        line: '#2C2C2C',
-        success: '#22C55E',
-        warning: '#F7B52D',
+        line: '#242D30',
+        success: '#10B981',
+        warning: '#EDB111',
         danger: '#EF4444',
-        info: '#4E88FF',
+        info: '#3B82F6',
       },
       boxShadow: {
         panel: '0 8px 24px rgba(0,0,0,0.25)',

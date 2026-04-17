@@ -9,8 +9,10 @@
 body {
   margin: 0;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  background: #121212;
-  color: #fff;
+  background: theme('colors.app');
+  color: theme('colors.appText');
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 * {
