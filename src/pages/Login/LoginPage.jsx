@@ -4,6 +4,7 @@ import Input from '../../components/forms/Input';
 import PrimaryButton from '../../components/ui/PrimaryButton';
 import ErrorState from '../../components/ui/ErrorState';
 import { useAuth } from '../../hooks/useAuth';
+import logo from '../../assets/Design sem nome.png';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -33,9 +34,9 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-md space-y-4 rounded-xl2 border border-line bg-surface p-7 shadow-panel"
       >
-        <div>
-          <h1 className="text-2xl font-bold">PortoFlow Access</h1>
-          <p className="mt-1 text-sm text-muted">Acesso seguro por perfil operacional.</p>
+        <div className="flex flex-col items-center">
+          <img src={logo} alt="PortoFlow Logo" className="h-25 w-auto object-contain" />
+          <p className="mt-0.1 text-sm text-muted text-center">Acesso seguro por perfil operacional.</p>
         </div>
         <Input label="Matrícula / Identificador" value={identifier} onChange={(e) => setIdentifier(e.target.value)} required />
         <Input

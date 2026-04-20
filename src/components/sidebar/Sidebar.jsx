@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../../assets/Design sem nome.png';
 
 export default function Sidebar({ items, open, onClose }) {
   const { pathname } = useLocation();
@@ -6,9 +7,11 @@ export default function Sidebar({ items, open, onClose }) {
   return (
     <aside className={`fixed z-40 h-full w-64 bg-primary p-6 shadow-2xl transition md:static md:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
       <div className="mb-10 flex items-center justify-between">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <span className="text-xs uppercase tracking-widest text-white/60">Operação</span>
-          <h1 className="text-xl font-bold text-white">PortoFlow</h1>
+          <div className="bg-black rounded-xl p-2 w-fit">
+            <img src={logo} alt="PortoFlow Logo" className="h-13 w-auto object-contain" />
+          </div>
         </div>
         <button className="rounded-full bg-white/10 p-1.5 text-white hover:bg-white/20 md:hidden" onClick={onClose}>✕</button>
       </div>
